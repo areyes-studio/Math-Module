@@ -1,6 +1,6 @@
-import AMath from "./AMath";
+import AMath from "./AMath.js";
 
-export default class Vector3 {
+export class Vector3 {
 	/**
 	 * Creates an instance of Vector3.
 	 * @param {number} x
@@ -389,3 +389,5 @@ export default class Vector3 {
 		return [this.x, this.y, this.z];
 	}
 }
+
+export default Vector3;

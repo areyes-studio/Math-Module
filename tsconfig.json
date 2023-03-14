@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"declarationDir": "Types",
+		"declarationMap": false,
 		"declaration": true,
 		"noEmit": false,
 		"emitDeclarationOnly": true,
@@ -25,11 +25,14 @@
 		"lib": [
 			"ES2022"
 		],
-		"target": "ES2022", 
+		"target": "ES2022",
 		"baseUrl": ".",
 		// import meta spark types
 		"paths": {
-			"*": ["./node_modules/@areyes-studio/meta-spark-types/Types/*"]
+			"*": [
+				"./node_modules/@areyes-studio/meta-spark-types/Types/*"
+			]
 		}
-	}
+	},
+	"include": ["src/**/*"]
 }

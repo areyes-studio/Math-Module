@@ -1,7 +1,7 @@
 import Quaternion from "quaternion";
-import Vector3 from "./Vector3";
+import Vector3 from "./Vector3.js";
 
-export default class Matrix {
+export class Matrix {
     constructor(elements = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]) {
         this.elements = elements;
     }
@@ -240,3 +240,5 @@ export default class Matrix {
         return str
     }
 }
+
+export default Matrix;

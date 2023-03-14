@@ -1,21 +1,26 @@
 {
 	"name": "@areyes-studio/math-module",
 	"description": "Mathematics library for NodeJS, providing classes for Vector2, Vector3, Matrix, and Math operations",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"author": {
 		"name": "AREYES.STUDIO"
 	},
+	"main": "./build/main.js",
+	"types": "./types/main.d.ts",
+	"type": "module",
 	"license": "MIT",
 	"devDependencies": {
+		"@areyes-studio/meta-spark-types": "*",
 		"@babel/preset-env": "^7.20.2",
 		"@types/jest": "^29.2.4",
-		"@types/node": "^14.14.37",
+		"@types/node": "^14.18.38",
 		"babel-jest": "^29.3.1",
 		"jest": "^29.3.1",
-		"@areyes-studio/meta-spark-types": "*"
+		"rollup": "^3.19.1"
 	},
 	"scripts": {
-		"test": "jest"
+		"test": "jest",
+		"build": "npx -p typescript tsc --declaration --allowJs --emitDeclarationOnly --outDir types && rollup --config"
 	},
 	"dependencies": {
 		"quaternion": "^1.4.0"
