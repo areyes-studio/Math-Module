@@ -7,7 +7,6 @@
 	},
 	"main": "./build/main.js",
 	"types": "./types/main.d.ts",
-	"type": "module",
 	"license": "MIT",
 	"devDependencies": {
 		"@areyes-studio/meta-spark-types": "*",
