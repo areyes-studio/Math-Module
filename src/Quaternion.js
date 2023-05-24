@@ -1,4 +1,3 @@
-
 export class Quaternion {
     /**
      * Creates an instance of Vector3.
@@ -6,13 +5,21 @@ export class Quaternion {
      * @param {number} x
      * @param {number} y
      * @param {number} z
-     * @memberof Vector3
+     * @memberof Quaternion
      */
     constructor(w, x, y, z) {
-        Object.defineProperty(this, "w", { get: () => w });
-        Object.defineProperty(this, "x", { get: () => x });
-        Object.defineProperty(this, "y", { get: () => y });
-        Object.defineProperty(this, "z", { get: () => z });
+        if (Array.isArray(w)) {
+            [w, x, y, z] = w;
+        } else if (Array.isArray(x)) {
+            [x, y, z] = x;
+        } else if (Array.isArray(y)) {
+            [y, z] = y;
+        }
+
+        Object.defineProperty(this, "w", { get: () => w ?? 1});
+        Object.defineProperty(this, "x", { get: () => x ?? 0});
+        Object.defineProperty(this, "y", { get: () => y ?? 0});
+        Object.defineProperty(this, "z", { get: () => z ?? 0});
     }
 
     get w() { return 1; }
@@ -28,8 +35,6 @@ export class Quaternion {
     static get epsilon() { return 1e-16 }
 
     /**
-     *
-     *
      * @static
      * @param {number[]} axis
      * @param {number} angle
@@ -278,9 +283,9 @@ export class Quaternion {
     static add(quat1, quat2) {
         return new Quaternion(
             quat1.w + quat2.w,
-            quat1.x + quat1.x,
-            quat1.y + quat1.y,
-            quat1.z + quat1.z
+            quat1.x + quat2.x,
+            quat1.y + quat2.y,
+            quat1.z + quat2.z
         );
     };
 
@@ -296,9 +301,9 @@ export class Quaternion {
     static sub(/** @type {Quaternion} */ quat1, /** @type {Quaternion} */ quat2) {
         return new Quaternion(
             quat1.w - quat2.w,
-            quat1.x - quat1.x,
-            quat1.y - quat1.y,
-            quat1.z - quat1.z
+            quat1.x - quat2.x,
+            quat1.y - quat2.y,
+            quat1.z - quat2.z
         );
     };
 
@@ -372,7 +377,6 @@ export class Quaternion {
      * @memberof Quaternion
      */
     static mul(/** @type {Quaternion} */ quat1, /** @type {Quaternion} */ quat2) {
-
         var w1 = quat1.w
         var x1 = quat1.x
         var y1 = quat1.y
@@ -419,7 +423,7 @@ export class Quaternion {
      * @memberof Quaternion
      */
     static dot(quat1, quat2) {
-        return quat1.w * quat1.w + quat1.x * quat2.x + quat1.y * quat2.y + quat1.z * quat2.z
+        return quat1.w * quat2.w + quat1.x * quat2.x + quat1.y * quat2.y + quat1.z * quat2.z
     };
 
     /**
@@ -582,7 +586,7 @@ export class Quaternion {
         if (y2 === 0 && z2 === 0) {
 
             if (w2 === 1 && x2 === 0) {
-                return this;
+                return quat1;
             }
 
             if (w2 === 0 && x2 === 0) {
@@ -729,7 +733,7 @@ export class Quaternion {
      * @memberof Quaternion
      */
     static imag(quat) {
-        return [quat.x, quat.y, quat.z];
+        return [0, quat.x, quat.y, quat.z];
     };
 
     /**
@@ -890,7 +894,6 @@ export class Quaternion {
      * @memberof Quaternion
      */
     static slerp(/** @type {Quaternion} */ quat1, /** @type {Quaternion} */ quat2) {
-
         var w1 = quat1.w
         var x1 = quat1.x
         var y1 = quat1.y
@@ -940,6 +943,96 @@ export class Quaternion {
                 s0 * z1 + s1 * z2);
         };
     };
+
+    /**
+     * @param {string} str
+     */
+    static fromString(str) {
+        /**@type {Quaternion} */
+        let resultQuat;
+        str = str.replace(/\s/g, '');
+        
+        if (str.includes('i') || str.includes('j') || str.includes('k')) {
+            const quaternion = { w: 0, x: 0, y: 0, z: 0 };
+
+            const regex = /([+-]?\d*[ijk])|([+-]?\d+)/g;
+            const matches = [...str.matchAll(regex)];
+
+            for (const match of matches) {
+                let value, type;
+
+                // If the match includes an 'i', 'j', or 'k'
+                if (match[1]) {
+                    value = match[1].slice(0, -1);
+                    if (value === '+' || value === '' || value === '-') {
+                        value = value === '-' ? '-1' : '1';
+                    }
+                    type = match[1].slice(-1);
+                } else {
+                    value = match[2];
+                    type = 'w';
+                }
+                
+                value = parseInt(value);
+
+                switch (type) {
+                case 'i':
+                    quaternion.x += value;
+                    break;
+                case 'j':
+                    quaternion.y += value;
+                    break;
+                case 'k':
+                    quaternion.z += value;
+                    break;
+                case 'w':
+                    quaternion.w += value;
+                    break;
+                }
+            }
+
+            resultQuat = new Quaternion(quaternion.w, quaternion.x, quaternion.y, quaternion.z);
+
+        } else {
+            var digits = str.match(/\d+/g);
+            /**@type {number[]} */
+            var numbers = [];
+
+            if (digits !== null) {
+                numbers = digits.map(function (digit) {
+                    return Number(digit);
+                });
+            }
+
+            while (numbers.length < 4) {
+                numbers.push(0);
+            }
+
+            resultQuat = new Quaternion(numbers[0], numbers[1], numbers[2], numbers[3]);
+        }
+        
+        return resultQuat;
+    }
+
+    /**
+     * @param {Quaternion} quat 
+     */
+    toQuatSignal(quat) {
+        const Reactive = require('Reactive');
+        return Reactive.quaternion(quat.w, quat.x, quat.y, quat.z);
+    }
+    
+    /**
+     * @param {QuaternionSignal} quat
+     */
+    fromQuatSignal(quat) {
+        return new Quaternion(
+            quat.w.pinLastValue(),
+            quat.x.pinLastValue(),
+            quat.y.pinLastValue(),
+            quat.z.pinLastValue()
+        )
+    }
 
     add(/** @type {Quaternion} */ quat) {
         return Quaternion.add(this, quat);
