@@ -1,6 +1,4 @@
 import Quaternion from "../src/Quaternion";
-import AMath from "../src/AMath";
-import Vector3 from "../src/Vector3";
 
 test('should work with different params', () => {
     let quat = new Quaternion();
