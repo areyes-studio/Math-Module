@@ -16,10 +16,10 @@ export class Quaternion {
             [y, z] = y;
         }
 
-        Object.defineProperty(this, "w", { get: () => w ?? 1});
-        Object.defineProperty(this, "x", { get: () => x ?? 0});
-        Object.defineProperty(this, "y", { get: () => y ?? 0});
-        Object.defineProperty(this, "z", { get: () => z ?? 0});
+        Object.defineProperty(this, "w", { get: () => w ? w : 1});
+        Object.defineProperty(this, "x", { get: () => x ? x : 0});
+        Object.defineProperty(this, "y", { get: () => y ? y : 0});
+        Object.defineProperty(this, "z", { get: () => z ? z : 0});
     }
 
     get w() { return 1; }

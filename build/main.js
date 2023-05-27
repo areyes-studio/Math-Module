@@ -1,5 +1,3 @@
-'use strict';
-
 class Vector3 {
 	/**
 	 * Creates an instance of Vector3.
@@ -408,10 +406,10 @@ class Quaternion {
             [y, z] = y;
         }
 
-        Object.defineProperty(this, "w", { get: () => w ?? 1});
-        Object.defineProperty(this, "x", { get: () => x ?? 0});
-        Object.defineProperty(this, "y", { get: () => y ?? 0});
-        Object.defineProperty(this, "z", { get: () => z ?? 0});
+        Object.defineProperty(this, "w", { get: () => w ? w : 1});
+        Object.defineProperty(this, "x", { get: () => x ? x : 0});
+        Object.defineProperty(this, "y", { get: () => y ? y : 0});
+        Object.defineProperty(this, "z", { get: () => z ? z : 0});
     }
 
     get w() { return 1; }
@@ -2301,8 +2299,4 @@ class Vector2 {
 	}
 }
 
-exports.AMath = AMath;
-exports.Matrix = Matrix;
-exports.Quaternion = Quaternion;
-exports.Vector2 = Vector2;
-exports.Vector3 = Vector3;
+export { AMath, Matrix, Quaternion, Vector2, Vector3 };
