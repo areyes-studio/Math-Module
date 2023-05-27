@@ -1,7 +1,7 @@
 {
 	"name": "@areyes-studio/math-module",
 	"description": "Mathematics library for NodeJS, providing classes for Vector2, Vector3, Matrix, and Math operations",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"author": {
 		"name": "AREYES.STUDIO"
 	},
@@ -19,10 +19,8 @@
 	},
 	"scripts": {
 		"test": "jest",
-		"build": "npx -p typescript tsc --declaration --allowJs --emitDeclarationOnly --outDir types && rollup --config"
-	},
-	"dependencies": {
-		"quaternion": "^1.4.0"
+		"build-types": "npx -p typescript tsc --declaration --allowJs --emitDeclarationOnly --outDir types",
+		"build-bundle": " rollup --config --bundleConfigAsCjs"
 	},
 	"jest": {
 		"transform": {

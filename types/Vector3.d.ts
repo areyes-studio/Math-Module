@@ -8,7 +8,7 @@ export class Vector3 {
     static mul(vec1: Vector3, scalar: number): Vector3;
     static div(vec1: Vector3, scalar: number): Vector3;
     /**
-     * Возвращает скалярное произведение двух векторов (dot product)
+     * Returns dot product of two vectors
      *
      * @static
      * @param {Vector3} vec1
@@ -18,7 +18,7 @@ export class Vector3 {
      */
     static dot(vec1: Vector3, vec2: Vector3): number;
     /**
-     * Возвращает векторное произведение двух векторов (cross product)
+     * Returns cross product of two vectors
      *
      * @static
      * @param {Vector3} vec1
@@ -28,7 +28,7 @@ export class Vector3 {
      */
     static cross(vec1: Vector3, vec2: Vector3): Vector3;
     /**
-     * Возвращает угол между двумя векторами в радианах
+     * Returns an angle between two vectors in radians
      *
      * @static
      * @param {Vector3} vec1
@@ -54,7 +54,7 @@ export class Vector3 {
      */
     static distance(vector1: Vector3, vector2: Vector3): number;
     /**
-     * Вращает вектор с помощью кватерниона
+     * Rotates vector by quaternion
      *
      * @static
      * @param {*} v
@@ -130,7 +130,7 @@ export class Vector3 {
      */
     div(scalar: number): Vector3;
     /**
-     * Возвращает скалярное произведение двух векторов (dot product)
+     * Returns dot product of two vectors
      *
      * @static
      * @param {Vector3} vec
@@ -139,7 +139,7 @@ export class Vector3 {
      */
     dot(vec: Vector3): number;
     /**
-     * Возвращает векторное произведение двух векторов (cross product)
+     * Returns cross product of two vectors
      *
      * @static
      * @param {Vector3} vec
@@ -148,7 +148,7 @@ export class Vector3 {
      */
     cross(vec: Vector3): Vector3;
     /**
-     * Возвращает угол между двумя векторами в радианах
+     * Returns an angle between two vectors in radians
      *
      * @static
      * @param {Vector3} vec
@@ -177,7 +177,7 @@ export class Vector3 {
         z: number;
     }): Vector3;
     /**
-     * Возвращает вектор, длина которого ограничена заданной
+     * Returns the vector, the madnitude of which is limited by specified one
      *
      * @param {number} maxLength
      * @returns

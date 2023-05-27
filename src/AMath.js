@@ -1,5 +1,5 @@
 import Vector3 from "./Vector3.js";
-import Quaternion from "quaternion";
+import Quaternion from "./Quaternion.js";
 
 /**
  * Class containing auxiliary mathematical functions

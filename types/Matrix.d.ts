@@ -46,4 +46,4 @@ export class Matrix {
 }
 export default Matrix;
 import Vector3 from "./Vector3.js";
-import Quaternion from "quaternion";
+import Quaternion from "./Quaternion";

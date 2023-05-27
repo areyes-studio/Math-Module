@@ -86,7 +86,7 @@ export class Vector2 {
      */
     div(scalar: number): Vector2;
     /**
-     * Возвращает скалярное произведение двух векторов (dot product)
+     * Returns dot product of two vectors
      *
      * @static
      * @param {Vector2} vec
@@ -117,7 +117,7 @@ export class Vector2 {
      */
     distance(vector: Vector2): number;
     /**
-     * Возвращает вектор, длина которого ограничена заданной
+     * Returns the vector, the madnitude of which is limited by specified one
      *
      * @param {number} maxLength
      * @returns

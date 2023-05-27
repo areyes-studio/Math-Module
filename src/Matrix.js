@@ -1,4 +1,4 @@
-import Quaternion from "quaternion";
+import Quaternion from "./Quaternion";
 import Vector3 from "./Vector3.js";
 
 export class Matrix {

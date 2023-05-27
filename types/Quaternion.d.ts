@@ -6,8 +6,6 @@ export class Quaternion {
     static get k(): Quaternion;
     static get epsilon(): number;
     /**
-     *
-     *
      * @static
      * @param {number[]} axis
      * @param {number} angle
@@ -293,18 +291,30 @@ export class Quaternion {
      */
     static slerp(quat1: Quaternion, quat2: Quaternion): any;
     /**
+     * @param {string} str
+     */
+    static fromString(str: string): Quaternion;
+    /**
      * Creates an instance of Vector3.
      * @param {number} w
      * @param {number} x
      * @param {number} y
      * @param {number} z
-     * @memberof Vector3
+     * @memberof Quaternion
      */
     constructor(w: number, x: number, y: number, z: number);
     get w(): number;
     get x(): number;
     get y(): number;
     get z(): number;
+    /**
+     * @param {Quaternion} quat
+     */
+    toQuatSignal(quat: Quaternion): QuaternionSignal;
+    /**
+     * @param {QuaternionSignal} quat
+     */
+    fromQuatSignal(quat: QuaternionSignal): Quaternion;
     add(quat: Quaternion): any;
     sub(quat: Quaternion): any;
     neg(): any;
